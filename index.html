@@ -159,6 +159,84 @@
   .scan-corner.tl{top:10px; left:10px; border-top:2px solid; border-left:2px solid;}
   .scan-corner.br{bottom:10px; right:10px; border-bottom:2px solid; border-right:2px solid;}
 
+  /* ---------- incident video banner ---------- */
+  .incident-video{
+    background:var(--navy);
+    color:var(--parchment);
+    border-top:1px solid var(--line-light);
+    border-bottom:1px solid var(--line-light);
+  }
+  .video-banner{
+    position:relative;
+    min-height:320px;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .video-banner video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0.78;
+  }
+  .video-banner::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:
+      linear-gradient(90deg, rgba(9,20,38,0.94), rgba(14,31,56,0.58), rgba(9,20,38,0.86)),
+      linear-gradient(0deg, rgba(9,20,38,0.12), rgba(9,20,38,0.38));
+  }
+  .video-banner::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:2;
+    background-image:
+      linear-gradient(rgba(241,236,224,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241,236,224,0.06) 1px, transparent 1px);
+    background-size:34px 34px;
+    pointer-events:none;
+  }
+  .video-banner .wrap{
+    position:relative;
+    z-index:3;
+    min-height:320px;
+    display:grid;
+    grid-template-columns:minmax(0,0.85fr) minmax(260px,0.35fr);
+    gap:44px;
+    align-items:center;
+  }
+  .video-copy h2{
+    font-size:clamp(1.9rem,3.2vw,2.75rem);
+    line-height:1.08;
+    max-width:720px;
+    margin-bottom:16px;
+  }
+  .video-copy p{
+    color:rgba(241,236,224,0.76);
+    max-width:620px;
+    font-size:1rem;
+  }
+  .incident-metrics{
+    border:1px solid var(--line-light);
+    background:rgba(9,20,38,0.68);
+    padding:22px;
+  }
+  .incident-metrics .row{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line-light);
+    font-size:0.78rem;
+  }
+  .incident-metrics .row:last-child{border-bottom:0;}
+  .incident-metrics .k{color:rgba(241,236,224,0.58);}
+  .incident-metrics .v{color:var(--brass); font-weight:600;}
+
   /* ---------- trust strip ---------- */
   .trust{
     background:var(--slate); padding:26px 0; border-bottom:1px solid var(--line-light);
@@ -258,6 +336,7 @@
   @media (max-width: 880px){
     .hero-grid{grid-template-columns:1fr;}
     .scan-panel{max-width:420px;}
+    .video-banner .wrap{grid-template-columns:1fr;}
     .about-grid, .contact-grid{grid-template-columns:1fr;}
     .process-row{grid-template-columns:1fr 1fr;}
   }
@@ -274,9 +353,11 @@
     .process-row{grid-template-columns:1fr;}
     .section-pad{padding:64px 0;}
     .hero{padding:56px 0 60px;}
+    .video-banner, .video-banner .wrap{min-height:420px;}
   }
   @media (prefers-reduced-motion: reduce){
     .scan-line, .pulse, html{animation:none !important; scroll-behavior:auto;}
+    .video-banner video{display:none;}
   }
 </style>
 </head>
@@ -333,6 +414,28 @@
         <div class="scan-corner tl"></div>
         <div class="scan-corner br"></div>
         <div class="scan-readout mono" id="scanReadout">initializing scan…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INCIDENT VIDEO BANNER -->
+  <section class="incident-video" aria-label="Cyber incident response video banner">
+    <div class="video-banner">
+      <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="assets/cyber-incident-banner.webm" type="video/webm">
+      </video>
+      <div class="wrap">
+        <div class="video-copy">
+          <div class="eyebrow">Incident Response Watch</div>
+          <h2>Cyber incidents move fast. Your evidence, controls, and response plan should move faster.</h2>
+          <p>From suspicious authentication activity to ransomware indicators, Mcroyalsit Solutions helps teams turn alert noise into verified action.</p>
+        </div>
+        <div class="incident-metrics mono" aria-label="Incident response telemetry">
+          <div class="row"><span class="k">SIGNAL</span><span class="v">HIGH</span></div>
+          <div class="row"><span class="k">SCOPE</span><span class="v">WEB + IDENTITY</span></div>
+          <div class="row"><span class="k">ACTION</span><span class="v">CONTAIN</span></div>
+          <div class="row"><span class="k">VERIFY</span><span class="v">VAPT / GRC</span></div>
+        </div>
       </div>
     </div>
   </section>
