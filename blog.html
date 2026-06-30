@@ -54,21 +54,52 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:18px 32px;
+    padding:12px 32px;
     max-width:1180px;
     margin:0 auto;
   }
   .brand{
     display:flex;
     align-items:center;
+    gap:10px;
+    flex-shrink:0;
+    padding:7px 10px 7px 8px;
+    background:rgba(241,236,224,0.08);
+    border:1px solid rgba(200,153,61,0.24);
+    border-radius:8px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.14);
+    transition:background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .brand:hover{
+    background:rgba(241,236,224,0.12);
+    border-color:rgba(200,153,61,0.5);
+    transform:translateY(-1px);
+  }
+  .brand-mark{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    padding:4px;
+    background:rgba(251,248,241,0.96);
+    border-radius:6px;
+  }
+  .brand-text{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.12rem;
+    line-height:1;
     color:var(--parchment);
   }
-  .brand-logo{
-    width:clamp(132px, 16vw, 178px);
-    height:auto;
-    max-height:72px;
-    object-fit:contain;
-    background:#fff;
+  .brand-text small{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.55rem;
+    font-weight:600;
+    letter-spacing:0.14em;
+    color:var(--brass);
+    margin-top:5px;
+    text-transform:uppercase;
   }
   nav.links{display:flex;gap:34px;align-items:center;}
   nav.links a{
@@ -381,7 +412,7 @@
     .wrap{padding:0 24px;}
     nav.links{
       position:fixed;
-      top:82px;
+      top:72px;
       left:0;
       right:0;
       bottom:0;
@@ -396,6 +427,11 @@
     }
     nav.links.open{transform:translateX(0);}
     .menu-toggle{display:block;}
+    .nav{padding:10px 24px;}
+    .brand{padding:6px 9px 6px 7px;}
+    .brand-mark{width:38px;height:38px;}
+    .brand-text{font-size:1rem;}
+    .brand-text small{font-size:0.5rem;letter-spacing:0.12em;}
     .hero{padding:58px 0 56px;}
     .section-pad{padding:62px 0;}
     .news-grid,.insight-grid{grid-template-columns:1fr;}
@@ -414,7 +450,11 @@
 <header>
   <div class="nav">
     <a href="index.html#top" class="brand">
-      <img class="brand-logo" src="assets/mcroyalsit-logo-transparent.png" alt="Mcroyalsit Solutions">
+      <img class="brand-mark" src="assets/mcroyalsit-logo-mark.png" alt="">
+      <span class="brand-text">
+        Mcroyalsit
+        <small>Solutions</small>
+      </span>
     </a>
     <nav class="links" id="navLinks">
       <a href="index.html#services">Services</a>
